@@ -11,7 +11,12 @@ export const routes: Routes = [
       {
             path: 'trending',
             loadComponent: () =>
-                  import('./gifts/pages/trending/trending.component'),
+                  import('./gifts/pages/trending-page/trending-page.component'),
+      },
+      {
+            path: 'search',
+            loadComponent: () =>
+                  import('./gifts/pages/search-page/search-page.component'),
       },
       {
             path: '**',
