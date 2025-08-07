@@ -7,4 +7,4 @@ import { SideMenuOptionsComponent } from './side-menu-options/side-menu-options.
       imports: [SideMenuHeaderComponent, SideMenuOptionsComponent],
       templateUrl: './side-menu.component.html',
 })
-export class GiftsSideMenuComponent {}
+export class SideMenuComponent {}
