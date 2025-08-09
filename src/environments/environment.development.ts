@@ -5,6 +5,7 @@ export const environment = {
       companySlogan: 'Maneja tus gifts',
 
       //? ApiKeys
+      giphyApiKey: '9NysbQf9Kj9Cyalqcvip4zupyTFGYWQs',
 
       //? URLS
 };
