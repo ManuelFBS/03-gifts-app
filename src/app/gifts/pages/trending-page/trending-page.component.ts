@@ -21,4 +21,6 @@ const imageUrls: string[] = [
       imports: [GiftListComponent],
       templateUrl: './trending-page.component.html',
 })
-export default class TrendingComponent {}
+export default class TrendingComponent {
+      gifts = imageUrls;
+}
