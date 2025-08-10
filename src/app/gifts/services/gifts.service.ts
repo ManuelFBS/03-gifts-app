@@ -3,6 +3,7 @@ import { inject, Injectable, signal } from '@angular/core';
 import { environment } from '@environments/environment';
 import type { GiphyResponse } from '../interfaces/giphy.interfaces';
 import { Gift } from '../interfaces/gift.interface';
+import { GiftMapper } from '../mapper/gift.mapper';
 
 @Injectable({ providedIn: 'root' })
 export class GiftService {
@@ -23,7 +24,12 @@ export class GiftService {
                         },
                   })
                   .subscribe((resp) => {
-                        console.log({ resp });
+                        const gifts = GiftMapper.mapGiphyItemsToGiftArray(
+                              resp.data
+                        );
+
+                        this.trendingGifts.set(gifts);
+                        console.log({ gifts });
                   });
       }
 }
