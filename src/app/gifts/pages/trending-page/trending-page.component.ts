@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { GiftListComponent } from '../../components/gift-list/gift-list.component';
+import { GiftService } from '../../services/gifts.service';
 
 const imageUrls: string[] = [
       'https://flowbite.s3.amazonaws.com/docs/gallery/square/image.jpg',
@@ -22,5 +23,7 @@ const imageUrls: string[] = [
       templateUrl: './trending-page.component.html',
 })
 export default class TrendingComponent {
-      gifts = imageUrls;
+      gifts = signal(imageUrls);
+
+      giftService = inject(GiftService);
 }
