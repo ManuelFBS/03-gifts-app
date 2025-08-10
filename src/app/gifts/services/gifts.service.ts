@@ -1,11 +1,14 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { environment } from '@environments/environment';
 import type { GiphyResponse } from '../interfaces/giphy.interfaces';
+import { Gift } from '../interfaces/gift.interface';
 
 @Injectable({ providedIn: 'root' })
 export class GiftService {
       private http = inject(HttpClient);
+
+      trendingGifts = signal<Gift[]>([]);
 
       constructor() {
             this.loadTrendingGifts();
