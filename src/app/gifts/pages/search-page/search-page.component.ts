@@ -1,9 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
+import { GiftListComponent } from '../../components/gift-list/gift-list.component';
 
 @Component({
       selector: 'app-search',
-      imports: [],
+      imports: [GiftListComponent],
       templateUrl: './search-page.component.html',
-      changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class SearchComponent {}
