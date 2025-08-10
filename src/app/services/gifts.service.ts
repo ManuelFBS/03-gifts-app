@@ -12,14 +12,15 @@ export class GiftService {
       }
 
       loadTrendingGifts() {
-            this.http.get<GiphyResponse>(
-                  `${environment.giphyUrl}/gifs/trending`,
-                  {
+            this.http
+                  .get<GiphyResponse>(`${environment.giphyUrl}/gifs/trending`, {
                         params: {
                               api_key: environment.giphyApiKey,
                               limit: 20,
                         },
-                  }
-            );
+                  })
+                  .subscribe((resp) => {
+                        console.log({ resp });
+                  });
       }
 }
