@@ -10,6 +10,7 @@ export class GiftService {
       private http = inject(HttpClient);
 
       trendingGifts = signal<Gift[]>([]);
+      trendingGiftsLoading = signal(true);
 
       constructor() {
             this.loadTrendingGifts();
@@ -29,6 +30,7 @@ export class GiftService {
                         );
 
                         this.trendingGifts.set(gifts);
+                        this.trendingGiftsLoading.set(false);
                         console.log({ gifts });
                   });
       }
