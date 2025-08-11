@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, signal } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
+import { map, tap } from 'rxjs';
 import { environment } from '@environments/environment';
 import type { GiphyResponse } from '../interfaces/giphy.interfaces';
 import { Gift } from '../interfaces/gift.interface';
 import { GiftMapper } from '../mapper/gift.mapper';
-import { map, tap } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class GiftService {
@@ -12,6 +12,9 @@ export class GiftService {
 
       trendingGifts = signal<Gift[]>([]);
       trendingGiftsLoading = signal(true);
+
+      searchHistory = signal<Record<string, Gift[]>>({});
+      searchHistoryKeys = computed(() => Object.keys(this.searchHistory()));
 
       constructor() {
             this.loadTrendingGifts();
@@ -49,14 +52,15 @@ export class GiftService {
                         map(({ data }) => data),
                         map((items) =>
                               GiftMapper.mapGiphyItemsToGiftArray(items)
-                        )
-                  );
-            // .subscribe((resp) => {
-            //       const gifts = GiftMapper.mapGiphyItemsToGiftArray(
-            //             resp.data
-            //       );
+                        ),
 
-            //       console.log({ search: gifts });
-            // });
+                        //* Historial...
+                        tap((items) => {
+                              this.searchHistory.update((history) => ({
+                                    ...history,
+                                    [query.toLowerCase()]: items,
+                              }));
+                        })
+                  );
       }
 }
