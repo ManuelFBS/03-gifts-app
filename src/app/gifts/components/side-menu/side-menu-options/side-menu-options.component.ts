@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
       faChartLine,
+      faClockRotateLeft,
       faMagnifyingGlass,
 } from '@fortawesome/free-solid-svg-icons';
+import { GiftService } from '../../../services/gifts.service';
 
 interface MenuOption {
       label: string;
@@ -19,6 +21,10 @@ interface MenuOption {
       templateUrl: './side-menu-options.component.html',
 })
 export class SideMenuOptionsComponent {
+      giftService = inject(GiftService);
+
+      iconSearchHistory = faClockRotateLeft;
+
       menuOptions: MenuOption[] = [
             {
                   icon: faChartLine,
