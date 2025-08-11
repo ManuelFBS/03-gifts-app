@@ -24,6 +24,13 @@ export const routes: Routes = [
                               ),
                   },
                   {
+                        path: 'history/:query',
+                        loadComponent: () =>
+                              import(
+                                    './gifts/pages/gift-history/gift-history.component'
+                              ),
+                  },
+                  {
                         path: '**',
                         redirectTo: 'trending',
                   },
